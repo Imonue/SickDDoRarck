@@ -10,14 +10,15 @@ create table store
 (
 stoid varchar(20) primary key not null,
 stopw varchar(40),
+stoname varchar(20),
 stophone varchar(20),
-kepperphone varchar(20),
+stotel varchar(20),
 stotype varchar(20),
 stoaddr varchar(200),
 stolati float(13,10),
 stolongi float(13,10),
 stomaxtable int(3),
-stocurtable int(3)
+stocurtable int(3) default 0
 );
 
 create table reservation

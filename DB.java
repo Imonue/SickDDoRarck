@@ -86,6 +86,24 @@ public class DB {
 		return store;
 	}
 	
+	public Customer GetCusUser(String cus_id) {
+		Customer customer = new Customer();
+		String sql = "select * from customer where cusid = "+cus_id;
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			customer.setCus_id(rs.getString("cusid"));
+			customer.setCus_pw(rs.getString("cuspw"));
+			customer.setCus_name(rs.getString("cusname"));
+			customer.setCus_phone(rs.getString("cusphone"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return customer;
+	}
+	
 	//////////////////////////Getter/Setter/////////////////////////////
 	
 	public void SetConnection(Connection conn) {
