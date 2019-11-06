@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"
+    import =  "Database.DB"
+    import =  "Database.Store"
+    import =  "Database.Customer"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,21 +14,34 @@
 	String check = request.getParameter("_check");
 	if(check.equals("sto")){
 		// 가게에 해당하는 정보를 받아와서 가게 업데이트 코드
-		String id = request.getParameter("_id");
-		String pw = request.getParameter("_pw");
-		String store_name = request.getParameter("_store_name");
-		String store_number = request.getParameter("_store_number");
-		String phone = request.getParameter("_phone");
-		String address = request.getParameter("_address");
-		//String 가게 타입
-		//String 위도/경도
+		Store store = new Store();
+			
+		store.setSto_id(request.getParameter("_sto_id"));
+		store.setSto_pw(request.getParameter("_sto_pw"));
+		store.setSto_name(request.getParameter("_sto_name"));
+		store.setSto_phone(request.getParameter("_sto_phone"));
+		store.setSto_kepper_phone(request.getParameter("_sto_kepper_phone"));
+		store.setSto_type(request.getParameter("_sto_type"));
+		store.setSto_addr(request.getParameter("_sto_addr"));
+		store.setSto_lati(Float.parseFloat(request.getParameter("_sto_lati")));
+		store.setSto_longi(Float.parseFloat(request.getParameter("_sto_longi")));
+		store.setSto_max_table(Integer.parseInt(request.getParameter("_sto_max_table")));
+		
+		DB.instance.AddStoUser(store);
+		
+		DB.instance.GetStoUser("kfc").getSto_lati();
+
 	}
 	else if(check.equals("cus")){
 		// 손님에 해당하는 정보를 받아와서 가게 업데이트 코드
-		String name = request.getParameter("_name");
-		String id = request.getParameter("_id");
-		String pw = request.getParameter("_pw");
-		String phone = request.getParameter("_phone");
+		Customer customer = new Customer();
+				
+		customer.setCus_id(request.getParameter("_cus_id"));
+		customer.setCus_pw(request.getParameter("_cus_pw"));
+		customer.setCus_name(request.getParameter("_cus_name"));
+		customer.setCus_phone(request.getParameter("_cus_phone"));
+		
+		DB.instance.AddCusUser(customer);
 	}
 %>
 </body>
