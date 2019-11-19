@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import = "java.sql.*"%>
+<%@ page import = "Database.*" import = "Infomation.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,32 +9,34 @@
 </head>
 <body>
 <%
-	Class.forName("com.mysql.jdbc.Driver");
-
-	try
-	{
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sickddorark", "root", "Kk5255014!");
-		
-		Statement stmt = conn.createStatement();
-		
-		
-		stmt.executeUpdate("insert into member values('1','1','1')");
-		
-	}
-	catch(Exception ex)
-	{
-		ex.getStackTrace();
-	}
-
-	//String id = request.getParameter("_id");
-	//String pw = request.getParameter("_pw");
+	String id = request.getParameter("_id");
+	String pw = request.getParameter("_pw");
+	String user_type = request.getParameter("_user_type");
 	
-	//if(id.equals("inha") && pw.equals("1234")){
-		//response.sendRedirect("Main.jsp");
-	//}
-	//else{
-		//response.sendRedirect("Login.jsp");
-	//}
+	if(id == null || pw == null || user_type == null) response.sendRedirect("Login.jsp");
+	
+	if(user_type.equals("_cus")){
+		if(DB.instance.LoginCusUser(id, pw))
+		{
+			session.setAttribute("id", id);
+			response.sendRedirect("Main.jsp");
+		}
+		else{
+			System.out.println("로그인 실패");
+			response.sendRedirect("Login.jsp");
+		}
+		
+	}
+	else if(user_type.equals("_sto")){
+		if(DB.instance.LoginStoUser(id, pw))
+		{
+			session.setAttribute("id", id);
+			response.sendRedirect("Main.jsp");
+		}
+		else{
+			response.sendRedirect("Login.jsp");
+		}
+	}
 %>
 </body>
 </html>

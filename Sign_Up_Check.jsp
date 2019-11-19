@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"
-    import =  "Database.DB"
-    import =  "Database.Store"
-    import =  "Database.Customer"%>
+    import =  "Database.*"
+    import =  "Infomation.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +19,7 @@
 		store.setSto_pw(request.getParameter("_sto_pw"));
 		store.setSto_name(request.getParameter("_sto_name"));
 		store.setSto_phone(request.getParameter("_sto_phone"));
-		store.setSto_kepper_phone(request.getParameter("_sto_kepper_phone"));
+		store.setSto_tel(request.getParameter("_sto_tel"));
 		store.setSto_type(request.getParameter("_sto_type"));
 		store.setSto_addr(request.getParameter("_sto_addr"));
 		store.setSto_lati(Float.parseFloat(request.getParameter("_sto_lati")));
@@ -28,9 +27,6 @@
 		store.setSto_max_table(Integer.parseInt(request.getParameter("_sto_max_table")));
 		
 		DB.instance.AddStoUser(store);
-		
-		DB.instance.GetStoUser("kfc").getSto_lati();
-
 	}
 	else if(check.equals("cus")){
 		// 손님에 해당하는 정보를 받아와서 가게 업데이트 코드
@@ -43,6 +39,8 @@
 		
 		DB.instance.AddCusUser(customer);
 	}
+	
+	response.sendRedirect("Login.jsp");
 %>
 </body>
 </html>

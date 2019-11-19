@@ -1,7 +1,6 @@
-package Database;
+package Infomation;
 
 public class Store {
-
 	private String sto_name;
 	private String sto_id;
 	private String sto_pw;
@@ -14,13 +13,15 @@ public class Store {
 	private float sto_longi;
 	private int sto_max_table;
 	private int sto_now_table;
+	private boolean sto_res_pos;
 	
 	public Store(){
 		super();
 	}
 	
 	public Store(String sto_name, String sto_id, String sto_pw, String sto_tel, String sto_phone,
-			String sto_type, String sto_addr, float sto_lati, float sto_longi, int sto_max_table) {
+			String sto_type, String sto_addr, float sto_lati, float sto_longi, int sto_max_table, 
+			int sto_now_table, boolean sto_res_pos) {
 		super();
 		this.sto_name = sto_name;
 		this.sto_id = sto_id;
@@ -32,6 +33,8 @@ public class Store {
 		this.sto_lati = sto_lati;
 		this.sto_longi = sto_longi;
 		this.sto_max_table = sto_max_table;
+		this.sto_now_table = sto_now_table;
+		this.sto_res_pos = sto_res_pos;
 	}
 
 	public String getSto_name() {
@@ -99,6 +102,12 @@ public class Store {
 	}
 	public void setSto_now_table(int sto_now_table) {
 		this.sto_now_table = sto_now_table;
+	}
+	public boolean getSto_res_pos() {
+		return sto_res_pos;
+	}
+	public void setSto_res_pos(boolean sto_res_pos) {
+		this.sto_res_pos = sto_res_pos;
 	}
 	
 	

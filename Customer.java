@@ -1,4 +1,4 @@
-package Database;
+package Infomation;
 
 public class Customer {
 	

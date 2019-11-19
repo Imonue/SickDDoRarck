@@ -12,7 +12,7 @@
 	가게 이름  <Input type = "text" name = "_sto_name"/><p>
 	ID  <Input type = "text" name = "_sto_id"/><p>
 	PW  <Input type = "text" name = "_sto_pw"/><p>
-	점주 휴대폰 번호  <Input type = "text" name = "_sto_kepper_phone"/><p>
+	점주 휴대폰 번호  <Input type = "text" name = "_sto_tel"/><p>
 	가게 번호  <Input type = "text" name = "_sto_phone"/><p>
 	가게 종류 <select name = "_sto_type">
 			<option value = "음식점" selected> 음식점 </option>

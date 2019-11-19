@@ -1,6 +1,9 @@
 package Database;
 import java.sql.*;
 
+import Infomation.Customer;
+import Infomation.Store;
+
 public class DB {
 	
 	public static DB instance = new DB(); //ΩÃ±€≈Ê
@@ -16,8 +19,16 @@ public class DB {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/sickddorark", "root", "Kk5255014!");	
 			this.stmt = conn.createStatement();				
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void finalize() {
+		try {
+			stmt.close();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -27,7 +38,7 @@ public class DB {
 	//////////////////////////Method/////////////////////////////
 	public void AddStoUser(Store store) {
 		try {
-			stmt.executeUpdate("insert into store values('"
+			String sql = "insert into store values('"
 					+store.getSto_id() + "','"
 					+store.getSto_pw() + "','"
 					+store.getSto_name() + "','"
@@ -38,8 +49,11 @@ public class DB {
 					+store.getSto_lati() + ","
 					+store.getSto_longi() + ","
 					+store.getSto_max_table() + ","
-					+0
-					+")");
+					+0 +","
+					+true
+					+")";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,6 +116,36 @@ public class DB {
 		}
 		
 		return customer;
+	}
+	
+	public boolean LoginCusUser(String id, String pw) {
+		String sql = "Select * from customer where cusid = '" + id + "' and cuspw = '" + pw + "'";
+		try {
+			ResultSet rs = this.stmt.executeQuery(sql);
+			if(rs.next()) {
+				System.out.println("Name : " + rs.getString("cusname"));
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean LoginStoUser(String id, String pw) {
+		String sql = "select * from store where stoid = '" + id + "' and stopw = '" + pw + "'";
+		System.out.println(sql);
+		try {
+			ResultSet rs = this.stmt.executeQuery(sql);
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	//////////////////////////Getter/Setter/////////////////////////////
