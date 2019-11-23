@@ -15,6 +15,9 @@
 <Form action = "Login.jsp" method = "post">
 	<input type = "submit" value = "로그인">
 </Form>
+<Form action = "User_Info.jsp" method = "post">
+	<input type = "submit" value = "유저 정보 확인">
+</Form>
 <%
 	String id = "";
 	

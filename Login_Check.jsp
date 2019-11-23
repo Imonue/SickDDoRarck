@@ -19,6 +19,7 @@
 		if(DB.instance.LoginCusUser(id, pw))
 		{
 			session.setAttribute("id", id);
+			session.setAttribute("user_type", "cus_user");
 			response.sendRedirect("Main.jsp");
 		}
 		else{
@@ -31,6 +32,7 @@
 		if(DB.instance.LoginStoUser(id, pw))
 		{
 			session.setAttribute("id", id);
+			session.setAttribute("user_type", "sto_user");
 			response.sendRedirect("Main.jsp");
 		}
 		else{
